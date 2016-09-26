@@ -7,6 +7,8 @@ int main(int argc, char *argv[])
 	memset(&pad, 0, sizeof(pad));
 	
     vita2d_init();
+	initNet();
+	
 	vita2d_set_clear_color(RGBA8(0, 0, 0, 255));
 	Roboto = vita2d_load_custom_pgf("ux0:/data/CyanogenVITA/system/fonts/Roboto.pgf");
 	
@@ -45,13 +47,14 @@ int main(int argc, char *argv[])
 		vita2d_start_drawing();
 		vita2d_clear_screen();
 		vita2d_draw_texture(gekihen, 0, 0);
-		vita2d_end_drawing();
-		vita2d_swap_buffers();
+		endDrawing();
 		sceKernelDelayThread(5 * 1000 * 1000);//delay 5 seconds
         home();
 	}
 	
 	vita2d_free_pgf(roboto);
+	
+	termNet();
     vita2d_fini();
     
     sceKernelExitProcess(0);
