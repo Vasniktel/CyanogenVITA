@@ -28,9 +28,9 @@ int aboutMenu()
 		if (cursor(0, 900, 117, 230))
 			vita2d_draw_texture(highlight, 0, 117);
 		else if (cursor(0, 900, 231, 343))
-			vita2d_draw_texture(highlight, 0, 231);
+			vita2d_draw_texture(highlight, 0, 232);
 		else if (cursor(0, 900, 344, 456))
-			vita2d_draw_texture(highlight, 0, 354);
+			vita2d_draw_texture(highlight, 0, 347);
 		
 		vita2d_pgf_draw_textf(Roboto, 30, 162, RGBA8(0, 0, 0, 255), 1.0f, "CyanogenVITA updates");
 		vita2d_pgf_draw_textf(Roboto, 30, 192, RGBA8(0, 0, 0, 255), 1.0f, "Click for, view or install available updates");
@@ -51,7 +51,7 @@ int aboutMenu()
 		
 		endDrawing();
 		
-		if (returnToMenu)
+		if (returnToMenu2)
 		{
 			vita2d_free_texture(aboutBg);
 			vita2d_free_texture(highlight);
@@ -95,7 +95,7 @@ int storageMenu()
 		
 		endDrawing();
 	
-		if (returnToMenu)
+		if (returnToMenu2)
 		{
 			vita2d_free_texture(storageBg);
 			settingsMenu();
@@ -174,7 +174,7 @@ int settingsMenu()
 		
 		endDrawing();
 		
-		if (returnToMenu)
+		if (returnToMenu2)
 		{
 			vita2d_free_texture(settingsBg);
 			vita2d_free_texture(hover);

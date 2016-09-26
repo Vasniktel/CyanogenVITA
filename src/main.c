@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 		vita2d_clear_screen();
 		vita2d_draw_texture(gekihen, 0, 0);
 		endDrawing();
-		sceKernelDelayThread(5 * 1000 * 1000);//delay 5 seconds
+		//sceKernelDelayThread(5 * 1000 * 1000);//delay 5 seconds
         home();
 	}
 	
