@@ -15,3 +15,32 @@ vita2d_texture * loadPngWithFilter(const char * path)
 	
 	return texture;
 }
+
+void endDrawing() 
+{
+	vita2d_end_drawing();
+	vita2d_swap_buffers();
+	sceDisplayWaitVblankStart();
+}
+
+void initNet()
+{
+	if (sceSysmoduleIsLoaded(SCE_SYSMODULE_NET) != SCE_SYSMODULE_LOADED)
+		sceSysmoduleLoadModule(SCE_SYSMODULE_NET);
+	
+	static char memory[16 * 1024];
+
+	SceNetInitParam param;
+	param.memory = memory;
+	param.size = sizeof(memory);
+	param.flags = 0;
+
+	sceNetInit(&param);
+	sceNetCtlInit();
+}
+
+void termNet()
+{
+	sceNetCtlTerm();
+	sceNetTerm();
+}

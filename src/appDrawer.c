@@ -2,6 +2,7 @@
 #include "clock.h"
 #include "homeMenu.h"
 #include "settingsMenu.h"
+#include "utils.h"
 
 int appDrawer()
 {
@@ -67,7 +68,10 @@ int appDrawer()
 		{
 			vita2d_draw_texture_scale(ic_launcher_settings, 350, 265, 1.1, 1.1);
 			if(pad.buttons & SCE_CTRL_CROSS)
+			{
+				vita2d_free_texture(backdrop);
 				settingsMenu();
+			}	
 		}
 		else 
 			vita2d_draw_texture(ic_launcher_settings, 355, 270);
@@ -80,11 +84,19 @@ int appDrawer()
 		navbarControls(0);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		
-		if(pad.buttons & SCE_CTRL_CIRCLE)
-			home();
+		endDrawing();
 		
-		vita2d_end_drawing();
-		vita2d_swap_buffers();	
+		if (returnToMenu)
+		{
+			vita2d_free_texture(backdrop);
+			home();
+		}	
+		
+		else if(pad.buttons & SCE_CTRL_CIRCLE)
+		{
+			vita2d_free_texture(backdrop);
+			home();
+		}		
 	}
 		
 	return 0;

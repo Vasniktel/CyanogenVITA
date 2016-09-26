@@ -1,4 +1,6 @@
 #include <psp2/kernel/processmgr.h>
+#include <psp2/net/net.h>
+#include <psp2/net/netctl.h>
 
 #include <vita2d.h>
 

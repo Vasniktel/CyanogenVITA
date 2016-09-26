@@ -12,11 +12,10 @@ CXXFLAGS = $(CFLAGS) -std=c++11 -fno-rtti -fno-exceptions
 ASFLAGS  = $(CFLAGS)
 
 OBJS     = appDrawer.o clock.o main.o homeMenu.o settingsMenu.o utils.o
-
-LIBS	 = 	-lvita2d -lSceKernel_stub -lSceDisplay_stub -lSceGxm_stub \
-			-lSceSysmodule_stub -lSceCtrl_stub -lScePgf_stub \
-			-lScePower_stub \
-			-lSceCommonDialog_stub -lfreetype -lpng -ljpeg -lz -lm -lc
+			
+LIBS := -lSceAppMgr_stub -lSceAppUtil_stub -lSceCommonDialog_stub -lSceCtrl_stub -lSceDisplay_stub -lSceGxm_stub -lSceKernel_stub \
+		-lSceNet_stub -lSceNetCtl_stub -lScePgf_stub -lScePower_stub -lSceSysmodule_stub -lvita2d -lSceVshBridge_stub \
+		-lfreetype -lpng -ljpeg -lz -lm -lc
 
 all: $(TARGET).vpk
 

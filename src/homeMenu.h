@@ -8,6 +8,7 @@
 #include <vita2d.h>
 
 #define cursor(x1, x2, y1, y2)  (cursorX  >= (x1) && cursorX  <= (x2) && cursorY >= (y1) && cursorY <= (y2))
+#define returnToMenu ((cursor(288, 384, 474, 544)) && (pad.buttons & SCE_CTRL_CROSS))
 
 vita2d_texture 	*background, *cursor, *ic_allapps, *ic_allapps_pressed, *ic_launcher_browser, *ic_launcher_camera,
 				*ic_launcher_clock, *ic_launcher_filemanager, *ic_launcher_gallery, *ic_launcher_game, *ic_launcher_messenger, 

@@ -1,6 +1,8 @@
 #include "appDrawer.h"
 #include "clock.h"
 #include "homeMenu.h"
+#include "settingsMenu.h"
+#include "utils.h"
 
 void controls() //Main controller function - allows cursor movement
 {	
@@ -76,7 +78,7 @@ void batteryStatus(int x, int y, int style)
 		
 		if (scePowerIsBatteryCharging()) 
 		{
-			vita2d_draw_texture(_charge, x + 5, y);
+			vita2d_draw_texture(_charge, x, y);
 		}
 		
 		vita2d_pgf_draw_textf(Roboto, x + 41, y + 22, RGBA8(255, 255, 255, 255), 1.0f, "%d%%", batt);
@@ -100,7 +102,11 @@ void navbarControls(int type)
 			vita2d_draw_texture(navbar, 330, 488);
 		
 		if (cursor(385, 520, 474, 544))
+		{
 			vita2d_draw_texture(navbarHighlight, 415, 474); //If the cursor is moved onto/near the back icon, it displays the highlighted back icon, else it just draws the navbar.
+			if(pad.buttons & SCE_CTRL_CROSS)
+				home();
+		}
 		else
 			vita2d_draw_texture(navbar, 330, 488);
 		
@@ -123,7 +129,11 @@ void navbarControls(int type)
 			vita2d_draw_texture(navbar2, 910, 122);
 		
 		if (cursor(900, 960, 221, 321))
+		{
 			vita2d_draw_texture(navbarHighlight2, 900, 222); //If the cursor is moved onto/near the back icon, it displays the highlighted back icon, else it just draws the navbar.
+			if(pad.buttons & SCE_CTRL_CROSS)
+				home();
+		}
 		else
 			vita2d_draw_texture(navbar2, 910, 122);
 		
@@ -176,7 +186,14 @@ int home()
 			vita2d_draw_texture(ic_launcher_browser, 575, 360);
 		
 		if (cursor(715, 815, 355, 455))
+		{
 			vita2d_draw_texture_scale(ic_launcher_settings, 715, 355, 1.1, 1.1);
+			if(pad.buttons & SCE_CTRL_CROSS)
+			{
+				vita2d_free_texture(backdrop);
+				settingsMenu();
+			}	
+		}
 		else
 			vita2d_draw_texture(ic_launcher_settings, 720, 360);
 		
@@ -188,8 +205,7 @@ int home()
 		navbarControls(0);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		
-		vita2d_end_drawing();
-		vita2d_swap_buffers();	
+		endDrawing();
 	}
 		
 	return 0;
