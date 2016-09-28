@@ -4,10 +4,12 @@
 
 int main(int argc, char *argv[]) 
 {
-	memset(&pad, 0, sizeof(pad));
+	memset(&pad, 0, sizeof(SceCtrlData));
+	sceCtrlPeekBufferPositive(0, &pad, 1);
 	
     vita2d_init();
 	initNet();
+	initAppUtil();
 	
 	vita2d_set_clear_color(RGBA8(0, 0, 0, 255));
 	Roboto = vita2d_load_custom_pgf("ux0:/data/CyanogenVITA/system/fonts/Roboto.pgf");
@@ -54,6 +56,7 @@ int main(int argc, char *argv[])
 	
 	vita2d_free_pgf(roboto);
 	
+	termAppUtil();
 	termNet();
     vita2d_fini();
     

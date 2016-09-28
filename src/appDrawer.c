@@ -67,7 +67,7 @@ int appDrawer()
 		if (cursor(350, 450, 265, 365))
 		{
 			vita2d_draw_texture_scale(ic_launcher_settings, 350, 265, 1.1, 1.1);
-			if(pad.buttons & SCE_CTRL_CROSS)
+			if(padPressed & SCE_CTRL_CROSS)
 			{
 				vita2d_free_texture(backdrop);
 				settingsMenu();
@@ -92,7 +92,7 @@ int appDrawer()
 			home();
 		}	
 		
-		else if(pad.buttons & SCE_CTRL_CIRCLE)
+		else if(padPressed & SCE_CTRL_CIRCLE)
 		{
 			vita2d_free_texture(backdrop);
 			home();

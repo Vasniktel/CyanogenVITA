@@ -23,7 +23,7 @@
 
 #define DATE_AS_INT (((YEAR - 2000) * 12 + MONTH) * 31 + DAY)
 
-vita2d_texture 	*settingsBg, *hover, *highlight, *aboutBg, *storageBg; 
+vita2d_texture 	*settingsBg, *hover, *highlight, *aboutBg, *storageBg, *displayBg, *toggleOff, *toggleOn; 
 
 int hrTime;
 
@@ -38,5 +38,7 @@ typedef struct
 int sceKernelGetSystemSwVersion(SceSystemSwVersionParam *param);
 
 int aboutMenu();
+int displayMenu();
+int displayTime();
 int storageMenu();
 int settingsMenu();

@@ -19,6 +19,7 @@ vita2d_texture 	*background, *cursor, *ic_allapps, *ic_allapps_pressed, *ic_laun
 vita2d_pgf *Roboto;
 
 SceCtrlData pad;
+uint32_t oldPad, currPad, padPressed, holdPad, releasedPad;
 
 int cursorX, cursorY;
 

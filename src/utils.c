@@ -44,3 +44,56 @@ void termNet()
 	sceNetCtlTerm();
 	sceNetTerm();
 }
+
+void initAppUtil()
+{
+	SceAppUtilInitParam init;
+	SceAppUtilBootParam boot;
+	memset(&init, 0, sizeof(SceAppUtilInitParam));
+	memset(&boot, 0, sizeof(SceAppUtilBootParam));
+	sceAppUtilInit(&init, &boot);
+}
+
+void termAppUtil()
+{
+	sceAppUtilShutdown();
+}
+
+char * getStorageInfoString(int type)
+{
+	uint64_t free_size = 0, max_size = 0;
+	sceAppMgrGetDevInfo("ux0:", &max_size, &free_size);
+	
+	static char free_size_string[16], max_size_string[16];
+	getSizeString(free_size_string, free_size);
+	getSizeString(max_size_string, max_size);
+	
+	if (type == 0)
+		return max_size_string;
+	else 
+		return free_size_string;
+}
+
+double getStorageInfoDouble(int type)
+{
+	char * str = getStorageInfoString(type);
+	double storage;
+
+	sscanf(str, "%lf", &storage);
+
+	return storage;
+}
+
+void getSizeString(char *string, uint64_t size) //Thanks TheOfficialFloW
+{
+	double double_size = (double)size;
+
+	int i = 0;
+	static char *units[] = { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+	while (double_size >= 1024.0f) {
+		double_size /= 1024.0f;
+		i++;
+	}
+
+	sprintf(string, "%.*f %s", (i == 0) ? 0 : 2, double_size, units[i]);
+}
