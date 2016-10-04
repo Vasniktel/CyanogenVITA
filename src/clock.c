@@ -24,7 +24,7 @@ void digitaltime(int x, int y, int color, int hr) //color == 0 is white, color =
 	
 	else if (hr == 1)
 	{
-		vita2d_pgf_draw_textf(Roboto, x + 15, y, RGBA8(255, 255, 255, 255), 1.0f, "%2d:%02d", time.hour, time.minute);
+		vita2d_pgf_draw_textf(Roboto, x + 40, y, RGBA8(255, 255, 255, 255), 1.0f, "%2d:%02d", time.hour, time.minute);
 	}
 }
 

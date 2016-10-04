@@ -80,7 +80,7 @@ int appDrawer()
 		controls();
 		wifiStatus(675, 6);
 		batteryStatus(730, 8, 0);
-		digitaltime(835, 30, 0, 0);
+		digitaltime(835, 30, 0, hrTime);
 		navbarControls(0);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		

@@ -1,5 +1,7 @@
 #include "main.h"
 #include "homeMenu.h"
+#include "powerMenu.h"
+#include "settingsMenu.h"
 #include "utils.h"
 
 int main(int argc, char *argv[]) 
@@ -34,15 +36,23 @@ int main(int argc, char *argv[])
 	navbarHighlight2 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/menu/navbarHighlight2.png");
 	
 	stat_sys_wifi_signal_null = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_wifi_signal_null.png");
-	 _0 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_0.png");
-	 _15 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_15.png");
-	 _28 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_28.png");
-	 _43 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_43.png");
-	 _57 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_57.png");
-	 _71 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_71.png");
-	 _85 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_85.png");
-	 _100 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_100.png");
-	 _charge = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_charge.png");
+	_0 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_0.png");
+	_15 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_15.png");
+	_28 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_28.png");
+	_43 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_43.png");
+	_57 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_57.png");
+	_71 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_71.png");
+	_85 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_85.png");
+	_100 = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_100.png");
+	_charge = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/icons/stat_sys_battery_charge.png");
+	 
+	power = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/menu/powerMenu.png");
+	powerSelection = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/menu/powerSelection.png");
+	recoverySelection = loadPngWithFilter("ux0:/data/CyanogenVITA/system/home/menu/recoverySelection.png");
+	
+	installDirectories();
+	
+	hrTime = setFileDefaultsInt("ux0:/data/CyanogenVITA/system/app/clock/timeSet.bin", 0, hrTime);
 	
 	while(1)
 	{
@@ -54,12 +64,8 @@ int main(int argc, char *argv[])
         home();
 	}
 	
-	vita2d_free_pgf(roboto);
+	cleanUp();
 	
-	termAppUtil();
-	termNet();
-    vita2d_fini();
-    
     sceKernelExitProcess(0);
     return 0;
 }

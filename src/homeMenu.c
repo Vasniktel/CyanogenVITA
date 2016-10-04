@@ -1,6 +1,8 @@
 #include "appDrawer.h"
 #include "clock.h"
 #include "homeMenu.h"
+#include "lockScreen.h"
+#include "powerMenu.h"
 #include "settingsMenu.h"
 #include "utils.h"
 
@@ -65,37 +67,45 @@ void batteryStatus(int x, int y, int style)
 {
 	int batt = scePowerGetBatteryLifePercent();
 	
+	int n = 0;
+	if (hrTime == 1)
+		n = 40;
+	
 	if (style == 0)
 	{
 		if(batt == 0)
-			vita2d_draw_texture(_0, x, y);	
+			vita2d_draw_texture(_0, x + n, y);	
 		else if(batt > 0 && batt <= 15)
-			vita2d_draw_texture(_15, x, y);
+			vita2d_draw_texture(_15, x + n, y);
 		else if(batt > 15 && batt <= 28)
-			vita2d_draw_texture(_28, x, y);
+			vita2d_draw_texture(_28, x + n, y);
 		else if(batt > 28 && batt <= 43)
-			vita2d_draw_texture(_43, x, y);
+			vita2d_draw_texture(_43, x + n, y);
 		else if(batt > 43 && batt <= 57)
-			vita2d_draw_texture(_57, x, y);
+			vita2d_draw_texture(_57, x + n, y);
 		else if(batt > 57 && batt <= 71)
-			vita2d_draw_texture(_71, x, y);
+			vita2d_draw_texture(_71, x + n, y);
 		else if(batt > 71 && batt <= 99)
-			vita2d_draw_texture(_85, x, y);
+			vita2d_draw_texture(_85, x + n, y);
 		else if(batt == 100)
-			vita2d_draw_texture(_100, x, y);
+			vita2d_draw_texture(_100, x + n, y);
 		
 		if (scePowerIsBatteryCharging()) 
 		{
-			vita2d_draw_texture(_charge, x, y);
+			vita2d_draw_texture(_charge, x + n, y);
 		}
 		
-		vita2d_pgf_draw_textf(Roboto, x + 41, y + 22, RGBA8(255, 255, 255, 255), 1.0f, "%d%%", batt);
+		vita2d_pgf_draw_textf(Roboto, x + n + 41, y + 22, RGBA8(255, 255, 255, 255), 1.0f, "%d%%", batt);
 	}
 }
 
 void wifiStatus(int x, int y)
 {
-	vita2d_draw_texture(stat_sys_wifi_signal_null, x, y);
+	int n = 0;
+	if (hrTime == 1)
+		n = 40;
+	
+	vita2d_draw_texture(stat_sys_wifi_signal_null, x + n, y);
 }
 
 void navbarControls(int type)
@@ -205,11 +215,16 @@ int home()
 		else
 			vita2d_draw_texture(ic_launcher_settings, 720, 360);
 		
+		if(padPressed & SCE_CTRL_LTRIGGER)
+			lockScreen();
+		else if(padPressed & SCE_CTRL_SQUARE)
+			powerMenu();
+		
 		controls();
 		appDrawerIcon();
 		wifiStatus(675, 6);
 		batteryStatus(730, 8, 0);
-		digitaltime(835, 30, 0, 0);
+		digitaltime(835, 30, 0, hrTime);
 		navbarControls(0);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		

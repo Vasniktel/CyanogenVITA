@@ -1,3 +1,4 @@
+#include "fs.h"
 #include "utils.h"
 
 void setBilinearFilter(int enabled, vita2d_texture * texture)
@@ -96,4 +97,70 @@ void getSizeString(char *string, uint64_t size) //Thanks TheOfficialFloW
 	}
 
 	sprintf(string, "%.*f %s", (i == 0) ? 0 : 2, double_size, units[i]);
+}
+
+void installDirectories()
+{
+	SceUID dir;
+	
+	if (!(dirExists("ux0:/data/CyanogenVITA/system/app/clock")))
+	{
+		dir = sceIoDopen("ux0:/data/CyanogenVITA/system/app/clock");
+		sceIoMkdir("ux0:/data/CyanogenVITA/system/app/clock", 0777);
+		sceIoDclose(dir);
+	}
+}
+
+int setFileDefaultsInt(char *path, int value, int var)
+{
+	FILE *temp;
+	 
+	if (!(fileExists(path)))
+	{
+		temp = fopen(path, "w");
+		fprintf(temp, "%d", value);
+		fclose(temp);
+	} 
+	
+	temp = fopen(path, "r");
+	fscanf(temp, "%d", &var);
+	fclose(temp);
+	
+	return var;
+}
+
+float setFileDefaultsFloat(char *path, float value, float var)
+{
+	FILE *temp;
+	 
+	if (!(fileExists(path)))
+	{
+		temp = fopen(path, "w");
+		fprintf(temp, "%f", value);
+		fclose(temp);
+	} 
+	
+	temp = fopen(path, "r");
+	fscanf(temp, "%f", &var);
+	fclose(temp);
+	
+	return var;
+}
+
+char * setFileDefaultsChar(char path[], char data[], char var[])
+{
+	FILE * temp;
+	
+	if (!(fileExists(path)))
+	{
+		temp = fopen(path, "w");
+		fprintf(temp, "%s", data);
+		fclose(temp);
+	}
+	
+	temp = fopen(path, "r");
+	fscanf(temp, "%s", var);
+	fclose(temp);
+	
+	return var;
 }

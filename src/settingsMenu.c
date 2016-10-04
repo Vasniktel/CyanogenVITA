@@ -45,7 +45,7 @@ int aboutMenu()
 		controls();
 		wifiStatus(612, 6);
 		batteryStatus(667, 8, 0);
-		digitaltime(773, 30, 0, 0);
+		digitaltime(773, 30, 0, hrTime);
 		navbarControls(1);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		
@@ -95,7 +95,7 @@ int displayMenu()
 		controls();
 		wifiStatus(612, 6);
 		batteryStatus(667, 8, 0);
-		digitaltime(773, 30, 0, 0);
+		digitaltime(773, 30, 0, hrTime);
 		navbarControls(1);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		
@@ -179,7 +179,7 @@ int displayTime()
 		controls();
 		wifiStatus(612, 6);
 		batteryStatus(667, 8, 0);
-		digitaltime(773, 30, 0, 0);
+		digitaltime(773, 30, 0, hrTime);
 		navbarControls(1);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		
@@ -240,7 +240,7 @@ int storageMenu()
 		controls();
 		wifiStatus(612, 6);
 		batteryStatus(667, 8, 0);
-		digitaltime(773, 30, 0, 0);
+		digitaltime(773, 30, 0, hrTime);
 		navbarControls(1);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		
@@ -303,7 +303,7 @@ int settingsMenu()
 		controls();
 		wifiStatus(612, 6);
 		batteryStatus(667, 8, 0);
-		digitaltime(773, 30, 0, 0);
+		digitaltime(773, 30, 0, hrTime);
 		navbarControls(1);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		

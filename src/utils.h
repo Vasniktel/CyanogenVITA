@@ -10,7 +10,6 @@
 
 #include <vita2d.h>
 
-void setBilinearFilter(int enabled, vita2d_texture *texture);
 vita2d_texture * loadPngWithFilter(const char * path);
 void endDrawing();
 void initNet();
@@ -20,3 +19,7 @@ void termAppUtil();
 char * getStorageInfoString(int type);
 double getStorageInfoDouble(int type);
 void getSizeString(char *string, uint64_t size); //Thanks TheOfficialFloW
+void installDirectories();
+int setFileDefaultsInt(char *path, int value, int var);
+float setFileDefaultsFloat(char *path, float value, float var);
+char * setFileDefaultsChar(char path[], char data[], char var[]);
