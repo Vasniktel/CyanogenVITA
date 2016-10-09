@@ -6,7 +6,7 @@
 #include "settingsMenu.h"
 #include "utils.h"
 
-void controls() //Main controller function - allows cursor movement
+int controls() //Main controller function - allows cursor movement
 {	
 	//Intialize the limits
 	int llimit = 0;
@@ -17,13 +17,9 @@ void controls() //Main controller function - allows cursor movement
 	memset(&pad, 0, sizeof(SceCtrlData));
 	sceCtrlPeekBufferPositive(0, &pad, 1);
 
-	currPad = pad.buttons;
-	padPressed = currPad & ~oldPad;
-	holdPad = padPressed;
-	releasedPad = ~currPad & oldPad;
-		
-	//Read keys
 	sceCtrlPeekBufferPositive(0, &pad, 1);
+
+	pressed = pad.buttons & ~old_pad.buttons;
 		
 	if (!(pad.buttons & SCE_CTRL_CROSS))	
 	{	
@@ -61,6 +57,9 @@ void controls() //Main controller function - allows cursor movement
 	{
 		cursorY = dlimit;
 	}
+	
+	old_pad = pad;
+	return 0;
 }
 
 void batteryStatus(int x, int y, int style)
@@ -122,7 +121,7 @@ void navbarControls(int type)
 		if (cursor(385, 520, 474, 544))
 		{
 			vita2d_draw_texture(navbarHighlight, 415, 474); //If the cursor is moved onto/near the back icon, it displays the highlighted back icon, else it just draws the navbar.
-			if(padPressed & SCE_CTRL_CROSS)
+			if(pressed & SCE_CTRL_CROSS)
 				home();
 		}
 		else
@@ -149,7 +148,7 @@ void navbarControls(int type)
 		if (cursor(900, 960, 221, 321))
 		{
 			vita2d_draw_texture(navbarHighlight2, 900, 222); //If the cursor is moved onto/near the back icon, it displays the highlighted back icon, else it just draws the navbar.
-			if(padPressed & SCE_CTRL_CROSS)
+			if(pressed & SCE_CTRL_CROSS)
 				home();
 		}
 		else
@@ -170,7 +169,7 @@ void appDrawerIcon() //Draws the app drawer icon. Draws a different icon of the 
 	if (cursor(435, 525, 385, 475))
 	{
 		vita2d_draw_texture(ic_allapps_pressed, 435, 385);
-		if(padPressed & SCE_CTRL_CROSS)
+		if(pressed & SCE_CTRL_CROSS)
 			appDrawer();
 	}
 	
@@ -206,7 +205,7 @@ int home()
 		if (cursor(715, 815, 355, 455))
 		{
 			vita2d_draw_texture_scale(ic_launcher_settings, 715, 355, 1.1, 1.1);
-			if(padPressed & SCE_CTRL_CROSS)
+			if(pressed & SCE_CTRL_CROSS)
 			{
 				vita2d_free_texture(backdrop);
 				settingsMenu();
@@ -215,16 +214,16 @@ int home()
 		else
 			vita2d_draw_texture(ic_launcher_settings, 720, 360);
 		
-		if(padPressed & SCE_CTRL_LTRIGGER)
+		if(pressed & SCE_CTRL_LTRIGGER)
 			lockScreen();
-		else if(padPressed & SCE_CTRL_SQUARE)
+		else if(pressed & SCE_CTRL_SQUARE)
 			powerMenu();
 		
 		controls();
 		appDrawerIcon();
 		wifiStatus(675, 6);
 		batteryStatus(730, 8, 0);
-		digitaltime(835, 30, 0, hrTime);
+		digitaltime(835, 30, 0, 1.0f, hrTime);
 		navbarControls(0);
 		vita2d_draw_texture(cursor, cursorX, cursorY);
 		

@@ -18,12 +18,12 @@ vita2d_texture 	*background, *cursor, *ic_allapps, *ic_allapps_pressed, *ic_laun
 
 vita2d_pgf *Roboto;
 
-SceCtrlData pad;
-uint32_t oldPad, currPad, padPressed, holdPad, releasedPad;
+SceCtrlData pad, old_pad;
+unsigned int pressed;
 
 int cursorX, cursorY;
 
-void controls();
+int controls();
 void batteryStatus(int x, int y, int style);
 void wifiStatus(int x, int y);
 void navbarControls(int type);
