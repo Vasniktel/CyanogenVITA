@@ -1,3 +1,4 @@
+#include <psp2/io/fcntl.h>
 #include <psp2/kernel/processmgr.h>
 #include <psp2/net/net.h>
 #include <psp2/net/netctl.h>
@@ -23,9 +24,10 @@
 
 #define DATE_AS_INT (((YEAR - 2000) * 12 + MONTH) * 31 + DAY)
 
-vita2d_texture 	*settingsBg, *hover, *highlight, *aboutBg, *storageBg, *displayBg, *toggleOff, *toggleOn; 
+vita2d_texture 	*settingsBg, *hover, *highlight, *aboutBg, *storageBg, *displayBg, *securityBg, *developerBg, *toggleOff, *toggleOn; 
 
-int hrTime;
+int hrTime, darkThemeMode;
+unsigned int fontColor;
 
 typedef struct 
 {
@@ -35,10 +37,12 @@ typedef struct
 	SceUInt unk;
 } SceSystemSwVersionParam;
 
-int sceKernelGetSystemSwVersion(SceSystemSwVersionParam *param);
+int sceKernelGetSystemSwVersion(SceSystemSwVersionParam * param);
 
 int aboutMenu();
+int developerMenu();
 int displayMenu();
 int displayTime();
 int storageMenu();
+int securityMenu();
 int settingsMenu();

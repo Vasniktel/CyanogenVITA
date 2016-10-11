@@ -11,7 +11,8 @@ CFLAGS   = -Wl,-q -Wall -Werror -O3 -DVERSION=$(VERSION)
 CXXFLAGS = $(CFLAGS) -std=c++11 -fno-rtti -fno-exceptions
 ASFLAGS  = $(CFLAGS)
 
-OBJS     = appDrawer.o clock.o fs.o main.o homeMenu.o lockScreen.o powerMenu.o settingsMenu.o utils.o
+OBJS     = 	appDrawer.o clock.o fs.o main.o homeMenu.o lockScreen.o powerMenu.o settingsMenu.o utils.o \
+			include/keyboard.o
 			
 LIBS := -lSceAppMgr_stub -lSceAppUtil_stub -lSceCommonDialog_stub -lSceCtrl_stub -lSceDisplay_stub -lSceGxm_stub -lSceKernel_stub \
 		-lSceNet_stub -lSceNetCtl_stub -lScePgf_stub -lScePower_stub -lSceSysmodule_stub -lvita2d -lSceVshBridge_stub \

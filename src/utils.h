@@ -10,6 +10,11 @@
 
 #include <vita2d.h>
 
+#define black RGBA8(0, 0, 0, 255)
+#define white RGBA8(255, 255, 255, 255)
+#define lightGray RGBA8(245, 245, 245, 255)
+#define teal RGBA8(58, 159, 150, 255)
+
 vita2d_texture * loadPngWithFilter(const char * path);
 void endDrawing();
 void initNet();

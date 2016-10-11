@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
 	installDirectories();
 	
 	hrTime = setFileDefaultsInt("ux0:/data/CyanogenVITA/system/app/clock/timeSet.bin", 0, hrTime);
+	darkThemeMode = setFileDefaultsInt("ux0:/data/CyanogenVITA/system/app/settings/darkTheme.bin", 0, darkThemeMode);
 	
 	while(1)
 	{
