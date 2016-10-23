@@ -6,9 +6,9 @@ addons:
             - curl
             - patch
 
-branches:
-    only:
-    - master
+#branches:
+#    only:
+#    - master
 cache:
     directories:
         - $VITASDK
