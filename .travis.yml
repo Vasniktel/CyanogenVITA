@@ -1,0 +1,24 @@
+language: c
+
+addons:
+    apt:
+        packages:
+            - curl
+            - patch
+
+branches:
+    only:
+    - master
+cache:
+    directories:
+        - $VITASDK
+        - $HOME/opt
+
+before_script:
+    - bash travis/install_toolchain.sh
+
+script:
+    - make
+
+#after_success:
+ #   - bash $TRAVIS_BUILD_DIR/.travis.d/deploy_nightly.sh
