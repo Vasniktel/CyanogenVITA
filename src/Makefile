@@ -7,16 +7,16 @@ VERSION	= '"6.0.1"'
 PREFIX   = arm-vita-eabi
 CC       = $(PREFIX)-gcc
 CXX      = $(PREFIX)-g++
-CFLAGS   = -Wl,-q -Wall -Werror -O3 -DVERSION=$(VERSION)
+CFLAGS   = -Wl,-q -Wall -Werror -O3 -fno-lto -DVERSION=$(VERSION) 
 CXXFLAGS = $(CFLAGS) -std=c++11 -fno-rtti -fno-exceptions
 ASFLAGS  = $(CFLAGS)
 
-OBJS     = 	appDrawer.o clock.o fs.o main.o homeMenu.o lockScreen.o powerMenu.o settingsMenu.o utils.o \
-			include/keyboard.o
+OBJS =	appDrawer.o clock.o fs.o main.o homeMenu.o lockScreen.o powerMenu.o settingsMenu.o utils.o \
+		include/keyboard.o
 			
-LIBS := -lSceAppMgr_stub -lSceAppUtil_stub -lSceCommonDialog_stub -lSceCtrl_stub -lSceDisplay_stub -lSceGxm_stub -lSceKernel_stub \
-		-lSceNet_stub -lSceNetCtl_stub -lScePgf_stub -lScePower_stub -lSceSysmodule_stub -lvita2d -lSceVshBridge_stub \
-		-lfreetype -lpng -ljpeg -lz -lm -lc
+LIBS := -lvita2d -lSceAppMgr_stub -lSceAppUtil_stub -lSceCommonDialog_stub -lSceCtrl_stub -lSceDisplay_stub -lSceGxm_stub \
+		-lSceLibKernel_stub -lSceNet_stub -lSceNetCtl_stub -lScePgf_stub -lScePower_stub -lSceSysmodule_stub -lSceVshBridge_stub \
+		-lfreetype -lpng16 -ljpeg -lz -lm -lc
 
 all: $(TARGET).vpk
 
