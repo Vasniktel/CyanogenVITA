@@ -17,23 +17,24 @@ int controls() //Main controller function - allows cursor movement
 	memset(&pad, 0, sizeof(SceCtrlData));
 	sceCtrlPeekBufferPositive(0, &pad, 1);
 
-	sceCtrlPeekBufferPositive(0, &pad, 1);
-
 	pressed = pad.buttons & ~old_pad.buttons;
+	
+	signed char lx, ly; //rx, ry;
+	int speed = 3;
+	
+	/* Update joystick values */
+	lx = (signed char)pad.lx - 128;
+	ly = (signed char)pad.ly - 128;
+	//rx = (signed char)pad.rx - 128;
+	//ry = (signed char)pad.ry - 128;
 		
 	if (!(pad.buttons & SCE_CTRL_CROSS))	
 	{	
-		if(pad.buttons & SCE_CTRL_RIGHT)
-			cursorX += 7;
-		
-		if(pad.buttons & SCE_CTRL_LEFT)
-			cursorX -= 7;
+		if(abs(lx) > 50)
+			cursorX += speed * lx/50.0f;
 
-		if(pad.buttons & SCE_CTRL_DOWN)
-			cursorY += 7;
-		
-		if(pad.buttons & SCE_CTRL_UP)
-			cursorY-= 7;
+		if(abs(ly) > 50)
+			cursorY += speed * ly/50.0f;
 	}
 	
 	/* Prevents the cursor from going off screen */

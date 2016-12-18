@@ -15,6 +15,8 @@
 #define lightGray RGBA8(245, 245, 245, 255)
 #define teal RGBA8(58, 159, 150, 255)
 
+#define abs(x) ((x) < 0 ? (-x) : (x))
+
 vita2d_texture * loadPngWithFilter(const char * path);
 void endDrawing();
 void initNet();
